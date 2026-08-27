@@ -95,8 +95,6 @@ into real-world software.
 ```text
 AI / ML
 
-AI / ML
-
 ├── LLMs
 ├── RAG
 ├── Agentic AI
