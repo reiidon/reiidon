@@ -10,15 +10,17 @@
 
 <img src="contrib-heatmap.svg" width="100%" />
 
-<br><br>
-
 </div>
 
 
 <!-- MAIN TERMINAL SECTION -->
 
+<br>
+
 <table>
+
 <tr>
+
 <td width="42%" valign="top">
 
 <img src="avi-ascii.svg" width="100%" />
@@ -30,14 +32,15 @@
 <img src="info-card.svg" width="100%" />
 
 </td>
+
 </tr>
+
 </table>
 
 
-<br>
-
-
 <!-- ABOUT -->
+
+<br>
 
 ## About Me
 
@@ -48,10 +51,3 @@ Shins
 AI Developer
 Python Developer
 Computer Science Student
-
-
-<div align="center">
-
-<img src="./avi-ascii.svg" alt="ASCII portrait" width="520"/>
-
-</div>
