@@ -35,8 +35,6 @@
 # About Me
 
 ```text
-$ whoami
-
 Shins
 
 AI Developer
@@ -73,6 +71,7 @@ into real-world software.
 > Large Language Models
 > Computer Vision
 > AI Agents
+> Model Context Protocol
 > Automation
 ```
 
@@ -96,9 +95,12 @@ into real-world software.
 ```text
 AI / ML
 
+AI / ML
+
 ├── LLMs
 ├── RAG
 ├── Agentic AI
+├── MCP
 └── Computer Vision
 
 
