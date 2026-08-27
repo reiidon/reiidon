@@ -1,5 +1,5 @@
 <!-- ========================= -->
-<!--        HEADER             -->
+<!--          HEADER           -->
 <!-- ========================= -->
 
 <div align="center">
@@ -18,7 +18,7 @@
 
 
 <!-- ========================= -->
-<!--      MAIN VISUALS         -->
+<!--       MAIN VISUALS        -->
 <!-- ========================= -->
 
 <br>
@@ -28,13 +28,13 @@
 
 <td width="42%" valign="top">
 
-<img src="avi-ascii.svg" width="100%" />
+<img src="avi-ascii.svg" width="100%" alt="ASCII portrait" />
 
 </td>
 
 <td width="58%" valign="top">
 
-<img src="info-card.svg" width="100%" />
+<img src="info-card.svg" width="100%" alt="Developer information card" />
 
 </td>
 
@@ -43,7 +43,7 @@
 
 
 <!-- ========================= -->
-<!--        ABOUT ME           -->
+<!--         ABOUT ME          -->
 <!-- ========================= -->
 
 <br>
@@ -96,7 +96,7 @@ into real-world software.
 
 
 <!-- ========================= -->
-<!--       TECH STACK          -->
+<!--        TECH STACK         -->
 <!-- ========================= -->
 
 <br>
@@ -113,18 +113,21 @@ into real-world software.
 
 ```text
 AI / ML
+
 ├── LLMs
 ├── RAG
 ├── Agentic AI
 └── Computer Vision
 
 Backend
+
 ├── Python
 ├── FastAPI
 ├── Flask
 └── REST APIs
 
 Frontend
+
 ├── React
 ├── JavaScript
 ├── HTML
@@ -216,7 +219,7 @@ Features
 
 
 <!-- ========================= -->
-<!--      DEVELOPMENT          -->
+<!--       DEVELOPMENT         -->
 <!-- ========================= -->
 
 <br>
@@ -242,7 +245,7 @@ Status:
 
 
 <!-- ========================= -->
-<!--       FOOTER              -->
+<!--         FOOTER            -->
 <!-- ========================= -->
 
 <br>
