@@ -1,7 +1,3 @@
-<!-- ========================= -->
-<!--          HEADER           -->
-<!-- ========================= -->
-
 <div align="center">
 
 # Hey, I'm Shins 👋
@@ -11,38 +7,32 @@
 <br>
 
 <a href="https://github.com/reiidon">
-  <img src="./contrib-heatmap.svg" width="100%" alt="GitHub contribution activity" />
+  <img src="contrib-heatmap.svg" width="100%" alt="GitHub contribution activity" />
 </a>
+
+<br><br>
+
+<table>
+<tr>
+<td align="center" width="42%">
+
+<img src="avi-ascii.svg" width="100%" alt="ASCII portrait" />
+
+</td>
+
+<td align="center" width="58%">
+
+<img src="info-card.svg" width="100%" alt="Developer information card" />
+
+</td>
+</tr>
+</table>
 
 </div>
 
-
-<!-- ========================= -->
-<!--       MAIN VISUALS        -->
-<!-- ========================= -->
-
 <br>
 
-<table width="100%">
-  <tr>
-    <td width="50%" align="center" valign="middle">
-      <img src="./avi-ascii.svg" width="100%" alt="ASCII portrait" />
-    </td>
-
-    <td width="50%" align="center" valign="middle">
-      <img src="./info-card.svg" width="100%" alt="Developer information card" />
-    </td>
-  </tr>
-</table>
-
-
-<!-- ========================= -->
-<!--         ABOUT ME          -->
-<!-- ========================= -->
-
-<br>
-
-## About Me
+# About Me
 
 ```text
 $ whoami
@@ -57,11 +47,12 @@ I build AI-powered applications and enjoy turning ideas
 into real-world software.
 ```
 
+<br>
 
 <table>
-  <tr>
+<tr>
 
-    <td width="50%" valign="top">
+<td width="50%" valign="top">
 
 ### 🔭 Currently Building
 
@@ -72,9 +63,9 @@ into real-world software.
 > Full-stack projects
 ```
 
-    </td>
+</td>
 
-    <td width="50%" valign="top">
+<td width="50%" valign="top">
 
 ### 🧠 Interested In
 
@@ -85,19 +76,14 @@ into real-world software.
 > Automation
 ```
 
-    </td>
+</td>
 
-  </tr>
+</tr>
 </table>
-
-
-<!-- ========================= -->
-<!--        TECH STACK         -->
-<!-- ========================= -->
 
 <br>
 
-## Tech Stack
+# Tech Stack
 
 <div align="center">
 
@@ -132,19 +118,14 @@ Frontend
 └── CSS
 ```
 
-
-<!-- ========================= -->
-<!--     FEATURED PROJECTS     -->
-<!-- ========================= -->
-
 <br>
 
-## Featured Projects
+# Featured Projects
 
 <table>
-  <tr>
+<tr>
 
-    <td width="50%" valign="top">
+<td width="50%" valign="top">
 
 ### 🤖 AI Research Agent
 
@@ -160,9 +141,9 @@ Features
 • AI workflow design
 ```
 
-    </td>
+</td>
 
-    <td width="50%" valign="top">
+<td width="50%" valign="top">
 
 ### 📄 AI Resume Screening System
 
@@ -177,13 +158,13 @@ Features
 • Document processing
 ```
 
-    </td>
+</td>
 
-  </tr>
+</tr>
 
-  <tr>
+<tr>
 
-    <td width="50%" valign="top">
+<td width="50%" valign="top">
 
 ### 🧠 LifePilot
 
@@ -198,9 +179,9 @@ Features
 • AI integration
 ```
 
-    </td>
+</td>
 
-    <td width="50%" valign="top">
+<td width="50%" valign="top">
 
 ### 💬 Local LLM Chatbot
 
@@ -214,19 +195,14 @@ Features
 • Python backend
 ```
 
-    </td>
+</td>
 
-  </tr>
+</tr>
 </table>
-
-
-<!-- ========================= -->
-<!--       DEVELOPMENT         -->
-<!-- ========================= -->
 
 <br>
 
-## Development
+# Development
 
 ```text
 $ git status
@@ -235,22 +211,17 @@ On branch main
 
 Working on:
 
-  → AI projects
-  → Backend systems
-  → LLM applications
-  → Real-world software
+→ AI projects
+→ Backend systems
+→ LLM applications
+→ Real-world software
 
 Status:
 
-  ● learning
-  ● building
-  ● shipping
+● learning
+● building
+● shipping
 ```
-
-
-<!-- ========================= -->
-<!--          FOOTER           -->
-<!-- ========================= -->
 
 <br>
 
