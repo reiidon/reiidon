@@ -3,7 +3,7 @@ xmlns="http://www.w3.org/2000/svg"
 width="100%"
 viewBox="0 0 801 215"
 role="img"
-aria-label="75 GitHub contributions in the last year"
+aria-label="90 GitHub contributions in the last year"
 >
 
 <defs>
@@ -1178,7 +1178,7 @@ aria-label="75 GitHub contributions in the last year"
     width="9"
     height="9"
     rx="2"
-    fill="#006d32"
+    fill="#0e4429"
     
 >
 
@@ -1198,7 +1198,7 @@ aria-label="75 GitHub contributions in the last year"
     width="9"
     height="9"
     rx="2"
-    fill="#006d32"
+    fill="#0e4429"
     
 >
 
@@ -2150,7 +2150,7 @@ aria-label="75 GitHub contributions in the last year"
     width="9"
     height="9"
     rx="2"
-    fill="#006d32"
+    fill="#0e4429"
     
 >
 
@@ -2330,8 +2330,8 @@ aria-label="75 GitHub contributions in the last year"
     width="9"
     height="9"
     rx="2"
-    fill="#26a641"
-    filter="url(#greenGlow)"
+    fill="#006d32"
+    
 >
 
     <animate
@@ -3358,7 +3358,7 @@ aria-label="75 GitHub contributions in the last year"
     width="9"
     height="9"
     rx="2"
-    fill="#006d32"
+    fill="#0e4429"
     
 >
 
@@ -3806,7 +3806,7 @@ aria-label="75 GitHub contributions in the last year"
     width="9"
     height="9"
     rx="2"
-    fill="#006d32"
+    fill="#0e4429"
     
 >
 
@@ -3874,7 +3874,7 @@ aria-label="75 GitHub contributions in the last year"
     width="9"
     height="9"
     rx="2"
-    fill="#39d353"
+    fill="#26a641"
     filter="url(#greenGlow)"
 >
 
@@ -4086,7 +4086,7 @@ aria-label="75 GitHub contributions in the last year"
     width="9"
     height="9"
     rx="2"
-    fill="#006d32"
+    fill="#0e4429"
     
 >
 
@@ -4126,8 +4126,8 @@ aria-label="75 GitHub contributions in the last year"
     width="9"
     height="9"
     rx="2"
-    fill="#26a641"
-    filter="url(#greenGlow)"
+    fill="#006d32"
+    
 >
 
     <animate
@@ -4146,7 +4146,7 @@ aria-label="75 GitHub contributions in the last year"
     width="9"
     height="9"
     rx="2"
-    fill="#006d32"
+    fill="#0e4429"
     
 >
 
@@ -4322,9 +4322,17 @@ aria-label="75 GitHub contributions in the last year"
     width="9"
     height="9"
     rx="2"
-    fill="#161b22"
+    fill="#006d32"
     
 >
+
+    <animate
+        attributeName="opacity"
+        values="0.25;1"
+        dur="0.45s"
+        begin="1.150s"
+        fill="freeze"
+    />
 
 </rect>
 
@@ -4334,9 +4342,17 @@ aria-label="75 GitHub contributions in the last year"
     width="9"
     height="9"
     rx="2"
-    fill="#161b22"
+    fill="#0e4429"
     
 >
+
+    <animate
+        attributeName="opacity"
+        values="0.25;1"
+        dur="0.45s"
+        begin="1.165s"
+        fill="freeze"
+    />
 
 </rect>
 
@@ -4346,7 +4362,7 @@ aria-label="75 GitHub contributions in the last year"
     width="9"
     height="9"
     rx="2"
-    fill="#006d32"
+    fill="#0e4429"
     
 >
 
@@ -4414,7 +4430,7 @@ aria-label="75 GitHub contributions in the last year"
     width="9"
     height="9"
     rx="2"
-    fill="#006d32"
+    fill="#0e4429"
     
 >
 
@@ -4490,7 +4506,7 @@ aria-label="75 GitHub contributions in the last year"
     width="9"
     height="9"
     rx="2"
-    fill="#006d32"
+    fill="#0e4429"
     
 >
 
@@ -4578,7 +4594,7 @@ aria-label="75 GitHub contributions in the last year"
     width="9"
     height="9"
     rx="2"
-    fill="#006d32"
+    fill="#0e4429"
     
 >
 
@@ -4666,7 +4682,7 @@ aria-label="75 GitHub contributions in the last year"
     width="9"
     height="9"
     rx="2"
-    fill="#006d32"
+    fill="#0e4429"
     
 >
 
@@ -4686,7 +4702,7 @@ aria-label="75 GitHub contributions in the last year"
     width="9"
     height="9"
     rx="2"
-    fill="#006d32"
+    fill="#0e4429"
     
 >
 
@@ -4730,7 +4746,7 @@ aria-label="75 GitHub contributions in the last year"
     width="9"
     height="9"
     rx="2"
-    fill="#006d32"
+    fill="#0e4429"
     
 >
 
@@ -4810,8 +4826,8 @@ aria-label="75 GitHub contributions in the last year"
     width="9"
     height="9"
     rx="2"
-    fill="#26a641"
-    filter="url(#greenGlow)"
+    fill="#006d32"
+    
 >
 
     <animate
@@ -4842,7 +4858,7 @@ aria-label="75 GitHub contributions in the last year"
     width="9"
     height="9"
     rx="2"
-    fill="#006d32"
+    fill="#0e4429"
     
 >
 
@@ -4862,7 +4878,7 @@ aria-label="75 GitHub contributions in the last year"
     width="9"
     height="9"
     rx="2"
-    fill="#006d32"
+    fill="#0e4429"
     
 >
 
@@ -5048,6 +5064,6 @@ aria-label="75 GitHub contributions in the last year"
     text-anchor="end"
     class="total"
 >
-    75 CONTRIBUTIONS
+    90 CONTRIBUTIONS
 </text>
 </svg>
