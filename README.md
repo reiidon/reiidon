@@ -230,7 +230,7 @@ Status:
 <div align="center">
 
 ```text
-$ echo "Thanks for visiting"
+ "Thanks for visiting"
 
 Building one project at a time. 🚀
 ```
