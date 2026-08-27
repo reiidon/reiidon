@@ -207,7 +207,6 @@ Features
 # Development
 
 ```text
-$ git status
 
 On branch main
 
