@@ -1,36 +1,137 @@
 <svg
 xmlns="http://www.w3.org/2000/svg"
-width="642"
-height="602"
-viewBox="0 0 642 602"
+width="689"
+height="656"
+viewBox="0 0 689 656"
 role="img"
-aria-label="ASCII portrait"
+aria-label="Animated tactical ASCII portrait"
 >
+
+<defs>
+
+    <filter
+        id="blueGlow"
+        x="-50%"
+        y="-50%"
+        width="200%"
+        height="200%"
+    >
+        <feGaussianBlur
+            stdDeviation="2.5"
+            result="blur"
+        />
+
+        <feMerge>
+            <feMergeNode in="blur"/>
+            <feMergeNode in="SourceGraphic"/>
+        </feMerge>
+    </filter>
+
+
+    <linearGradient
+        id="scanGradient"
+        x1="0%"
+        y1="0%"
+        x2="100%"
+        y2="0%"
+    >
+        <stop
+            offset="0%"
+            stop-color="#58a6ff"
+            stop-opacity="0"
+        />
+
+        <stop
+            offset="50%"
+            stop-color="#58a6ff"
+            stop-opacity="0.28"
+        />
+
+        <stop
+            offset="100%"
+            stop-color="#58a6ff"
+            stop-opacity="0"
+        />
+
+    </linearGradient>
+
+
+    <pattern
+        id="scanlines"
+        width="6"
+        height="6"
+        patternUnits="userSpaceOnUse"
+    >
+        <rect
+            width="6"
+            height="3"
+            fill="#ffffff"
+            opacity="0.015"
+        />
+    </pattern>
+
+</defs>
+
 
 <style>
 
 .ascii {
-    font-family: monospace;
+    font-family: "Courier New", monospace;
     font-size: 7px;
     font-weight: 400;
     fill: #c9d1d9;
+    letter-spacing: 0;
 }
 
 .row {
     opacity: 0;
     animation:
-        appear
-        0.1s
-        forwards;
+        reveal 0.25s ease-out forwards;
 }
 
-@keyframes appear {
+@keyframes reveal {
 
     from {
         opacity: 0;
+        transform: translateX(-8px);
     }
 
     to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+}
+
+.scan {
+    animation:
+        scanMove 5s linear infinite;
+}
+
+@keyframes scanMove {
+
+    0% {
+        transform: translateX(-180px);
+    }
+
+    100% {
+        transform: translateX(900px);
+    }
+
+}
+
+.pulse {
+    animation:
+        pulse 1.8s ease-in-out infinite;
+}
+
+@keyframes pulse {
+
+    0%, 100% {
+        opacity: 0.4;
+    }
+
+    50% {
         opacity: 1;
     }
 
@@ -38,562 +139,729 @@ aria-label="ASCII portrait"
 
 </style>
 
+
+<!-- MAIN BACKGROUND -->
+
 <rect
-width="100%"
-height="100%"
-rx="12"
-fill="#0d1117"
+    x="1"
+    y="1"
+    width="687"
+    height="654"
+    rx="16"
+    fill="#07090d"
+    stroke="#30363d"
+    stroke-width="1"
+/>
+
+
+<!-- INNER PANEL -->
+
+<rect
+    x="8"
+    y="8"
+    width="673"
+    height="640"
+    rx="12"
+    fill="#0d1117"
+    stroke="#1f6feb"
+    stroke-opacity="0.22"
+    stroke-width="1"
+/>
+
+
+<!-- SUBTLE SCANLINES -->
+
+<rect
+    x="8"
+    y="8"
+    width="673"
+    height="640"
+    rx="12"
+    fill="url(#scanlines)"
+/>
+
+
+<!-- HUD CORNERS -->
+
+<path
+    d="M 14 34 L 14 14 L 34 14"
+    fill="none"
+    stroke="#58a6ff"
+    stroke-width="2"
+    filter="url(#blueGlow)"
+/>
+
+<path
+    d="M 655 14 L 675 14 L 675 34"
+    fill="none"
+    stroke="#58a6ff"
+    stroke-width="2"
+    filter="url(#blueGlow)"
+/>
+
+<path
+    d="M 14 622 L 14 642 L 34 642"
+    fill="none"
+    stroke="#58a6ff"
+    stroke-width="2"
+    filter="url(#blueGlow)"
+/>
+
+<path
+    d="M 655 642 L 675 642 L 675 622"
+    fill="none"
+    stroke="#58a6ff"
+    stroke-width="2"
+    filter="url(#blueGlow)"
+/>
+
+
+<!-- HEADER -->
+
+<text
+    x="26"
+    y="27"
+    font-family="Courier New, monospace"
+    font-size="10"
+    letter-spacing="2"
+    fill="#8b949e"
+>
+    IDENTITY // PORTRAIT
+</text>
+
+
+<!-- STATUS -->
+
+<circle
+    cx="659"
+    cy="23"
+    r="4"
+    fill="#39d353"
+    class="pulse"
 />
 
 <text
-x="20"
-y="28"
-class="ascii row"
-xml:space="preserve"
-style="animation-delay:0.000s"
->                                                                                                                                            </text>
-
-<text
-x="20"
-y="36"
-class="ascii row"
-xml:space="preserve"
-style="animation-delay:0.015s"
->                                                                                                                                            </text>
-
-<text
-x="20"
-y="44"
-class="ascii row"
-xml:space="preserve"
-style="animation-delay:0.030s"
->                                                                                                                                            </text>
-
-<text
-x="20"
-y="52"
-class="ascii row"
-xml:space="preserve"
-style="animation-delay:0.045s"
->                                                                                                                                            </text>
-
-<text
-x="20"
-y="60"
-class="ascii row"
-xml:space="preserve"
-style="animation-delay:0.060s"
->                                                                                                                                            </text>
-
-<text
-x="20"
-y="68"
-class="ascii row"
-xml:space="preserve"
-style="animation-delay:0.075s"
->                                                               :--=-...  .....                                                              </text>
-
-<text
-x="20"
-y="76"
-class="ascii row"
-xml:space="preserve"
-style="animation-delay:0.090s"
->                                                            .:-+++++---=*==-=-------:.                                                      </text>
-
-<text
-x="20"
-y="84"
-class="ascii row"
-xml:space="preserve"
-style="animation-delay:0.105s"
->                                                          :==+++++*+===+**##*+=++****=:.                                                    </text>
-
-<text
-x="20"
-y="92"
-class="ascii row"
-xml:space="preserve"
-style="animation-delay:0.120s"
->                                                         -%%#+***##*++=+*##%##%**+*+*+---                                                   </text>
-
-<text
-x="20"
-y="100"
-class="ascii row"
-xml:space="preserve"
-style="animation-delay:0.135s"
->                                                        .*%%%#*###%%*++#**#*=*+*#+**==--+=.                                                 </text>
-
-<text
-x="20"
-y="108"
-class="ascii row"
-xml:space="preserve"
-style="animation-delay:0.150s"
->                                                       =#%###%%%%%@%#*%%%%%#**=-=#%#+---+*+=.                                               </text>
-
-<text
-x="20"
-y="116"
-class="ascii row"
-xml:space="preserve"
-style="animation-delay:0.165s"
->                                                      *@%#+++*#*%@%###%%@@@@@@@%%%%@%+++++=*+.                                              </text>
-
-<text
-x="20"
-y="124"
-class="ascii row"
-xml:space="preserve"
-style="animation-delay:0.180s"
->                                                     .%@%*##*+###%%%%%##%%@@@@@@@@%%%%%@#=-+=:-=.                                           </text>
+    x="649"
+    y="27"
+    text-anchor="end"
+    font-family="Courier New, monospace"
+    font-size="9"
+    fill="#39d353"
+>
+    ONLINE
+</text>
+
+
+<!-- HEADER LINE -->
 
+<line
+    x1="26"
+    y1="40"
+    x2="663"
+    y2="40"
+    stroke="#30363d"
+    stroke-width="1"
+/>
+
+
+<text
+    x="26"
+    y="62"
+    class="ascii row"
+    xml:space="preserve"
+    style="animation-delay:0.000s"
+>                                                                                                                                                      </text>
+
+<text
+    x="26"
+    y="70"
+    class="ascii row"
+    xml:space="preserve"
+    style="animation-delay:0.018s"
+>                                                                                                                                                      </text>
+
+<text
+    x="26"
+    y="78"
+    class="ascii row"
+    xml:space="preserve"
+    style="animation-delay:0.036s"
+>                                                                                                                                                      </text>
+
+<text
+    x="26"
+    y="86"
+    class="ascii row"
+    xml:space="preserve"
+    style="animation-delay:0.054s"
+>                                                                                                                                                      </text>
+
+<text
+    x="26"
+    y="94"
+    class="ascii row"
+    xml:space="preserve"
+    style="animation-delay:0.072s"
+>                                                                                                                                                      </text>
+
+<text
+    x="26"
+    y="102"
+    class="ascii row"
+    xml:space="preserve"
+    style="animation-delay:0.090s"
+>                                                                   .:---:..    ....                                                                   </text>
+
+<text
+    x="26"
+    y="110"
+    class="ascii row"
+    xml:space="preserve"
+    style="animation-delay:0.108s"
+>                                                                 .-+****+---=*+=-===------:.                                                          </text>
+
+<text
+    x="26"
+    y="118"
+    class="ascii row"
+    xml:space="preserve"
+    style="animation-delay:0.126s"
+>                                                               -=++++++*++=++**##*+=+******+:.                                                        </text>
+
+<text
+    x="26"
+    y="126"
+    class="ascii row"
+    xml:space="preserve"
+    style="animation-delay:0.144s"
+>                                                             .#%#**##*%#***++#%#%%%%#*#***#+=--                                                       </text>
+
+<text
+    x="26"
+    y="134"
+    class="ascii row"
+    xml:space="preserve"
+    style="animation-delay:0.162s"
+>                                                             +@%%#**##%%#*++##*#%**####+**++=-+=.                                                     </text>
+
+<text
+    x="26"
+    y="142"
+    class="ascii row"
+    xml:space="preserve"
+    style="animation-delay:0.180s"
+>                                                           -*%%%%@%%@%%@%##%%#%%#+*+-=+#%#+====**=:                                                   </text>
+
+<text
+    x="26"
+    y="150"
+    class="ascii row"
+    xml:space="preserve"
+    style="animation-delay:0.198s"
+>                                                          +%%%***#%%%@@@%#%%%@@@@@%%%##%%@%+=++#*+#-                                                  </text>
+
+<text
+    x="26"
+    y="158"
+    class="ascii row"
+    xml:space="preserve"
+    style="animation-delay:0.216s"
+>                                                         :@@%###***##%%%%%%%%@@%%%@@@@@%%%%%%%%*==*=:::                                               </text>
+
+<text
+    x="26"
+    y="166"
+    class="ascii row"
+    xml:space="preserve"
+    style="animation-delay:0.234s"
+>                                                         =@%%###%%%%%%%%@%%#*#%@@@%@@@%@@%%@@@@*++*+=+++                                              </text>
+
+<text
+    x="26"
+    y="174"
+    class="ascii row"
+    xml:space="preserve"
+    style="animation-delay:0.252s"
+>                                                         +%%%%%%%%@@@@@@%%%%%#%%#*###**%%@@@%%@%%#######.                                             </text>
+
 <text
-x="20"
-y="132"
-class="ascii row"
-xml:space="preserve"
-style="animation-delay:0.195s"
->                                                     -%%%###%%%@%%%%%%#**%%%%%%%#%%@%%%%%++**+++*.                                          </text>
+    x="26"
+    y="182"
+    class="ascii row"
+    xml:space="preserve"
+    style="animation-delay:0.270s"
+>                                                         +%%@%%@%%%@%@%%%@@@@@%%*++***#%%%%%@%@@%###%%%+                                              </text>
 
 <text
-x="20"
-y="140"
-class="ascii row"
-xml:space="preserve"
-style="animation-delay:0.210s"
->                                                     -%%%%@%%%@@@@@%%%@@%%*++**++#%%@@%%%%###%###.                                          </text>
+    x="26"
+    y="190"
+    class="ascii row"
+    xml:space="preserve"
+    style="animation-delay:0.288s"
+>                                                         +@%%@%%@@%@@@@@@@%%@@@%++===+#@@%#%%@%%%%##%@%                                               </text>
 
 <text
-x="20"
-y="148"
-class="ascii row"
-xml:space="preserve"
-style="animation-delay:0.225s"
->                                                     -%%%@%%@%%%%@@@@@%%%%#++==+*%%##%@%@@%**#%%-                                           </text>
+    x="26"
+    y="198"
+    class="ascii row"
+    xml:space="preserve"
+    style="animation-delay:0.306s"
+>                                                         -@%@@@@%@@@%%%%##+++##+-:...:-+*#**#%@%%%@@@%%#.                                             </text>
 
 <text
-x="20"
-y="156"
-class="ascii row"
-xml:space="preserve"
-style="animation-delay:0.240s"
->                                                     :@@%%%%%@@@@%%%%#*#%%+--::-=#%###%@%%%%%%@%-                                           </text>
+    x="26"
+    y="206"
+    class="ascii row"
+    xml:space="preserve"
+    style="animation-delay:0.324s"
+>                                                          #@%@@%@%#%%%%%####*++=--:-==+***++*#%@@@%%%@#*.                                             </text>
 
 <text
-x="20"
-y="164"
-class="ascii row"
-xml:space="preserve"
-style="animation-delay:0.255s"
->                                                      #@%@%%@%%%%##**+==++-:. ..:==+==+#%%%@@@%#%.                                          </text>
+    x="26"
+    y="214"
+    class="ascii row"
+    xml:space="preserve"
+    style="animation-delay:0.342s"
+>                                                          =@%%%@%+*####%%@@@@@%#**#%@@@@@%%#####%%%%@#.                                               </text>
 
 <text
-x="20"
-y="172"
-class="ascii row"
-xml:space="preserve"
-style="animation-delay:0.270s"
->                                                      =@%@%@%****##%%%%##++==+*##%%#****#%@%%%@+:                                           </text>
+    x="26"
+    y="222"
+    class="ascii row"
+    xml:space="preserve"
+    style="animation-delay:0.360s"
+>                                                          -@@@@#-=*%@@%%%%%@@@@#=-*@@@%%%%%%%%#+#@%%#                                                 </text>
 
 <text
-x="20"
-y="180"
-class="ascii row"
-xml:space="preserve"
-style="animation-delay:0.285s"
->                                                      -%@%@#==*####%%%@@@%#+*%@@@@@%####**%%%@+                                             </text>
+    x="26"
+    y="230"
+    class="ascii row"
+    xml:space="preserve"
+    style="animation-delay:0.378s"
+>                                                          -%#%%=:=+*#%@@@@@%%%#-  .*%%@@@@@@%#+==%%@=                                                 </text>
 
 <text
-x="20"
-y="188"
-class="ascii row"
-xml:space="preserve"
-style="animation-delay:0.300s"
->                                                      :%%%%--=*%%%%@@@@@%#:  *%@@@%%%%%#+=*@@#                                              </text>
+    x="26"
+    y="238"
+    class="ascii row"
+    xml:space="preserve"
+    style="animation-delay:0.396s"
+>                                                          -*+%%-.:...-++**+=++-    .--=****=:.:::*##-                                                 </text>
 
 <text
-x="20"
-y="196"
-class="ascii row"
-xml:space="preserve"
-style="animation-delay:0.315s"
->                                                      :#+##.::.:=*#%##+++-   .=+*#%%#*=-::=##+                                              </text>
+    x="26"
+    y="246"
+    class="ascii row"
+    xml:space="preserve"
+    style="animation-delay:0.414s"
+>                                                          .=*@#-----:     :+*=-...  .::      .::.#%=                                                  </text>
 
 <text
-x="20"
-y="204"
-class="ascii row"
-xml:space="preserve"
-style="animation-delay:0.330s"
->                                                      .=*@#::::.   ..:-+=.    .:....   ...-#+:                                              </text>
+    x="26"
+    y="254"
+    class="ascii row"
+    xml:space="preserve"
+    style="animation-delay:0.432s"
+>                                                           =*+=++++==-----=++*%#**##=----::::--=-++-                                                  </text>
 
 <text
-x="20"
-y="212"
-class="ascii row"
-xml:space="preserve"
-style="animation-delay:0.345s"
->                                                       -**+====-:...:=+==*+==+-:-:.  ..:-:-#=                                               </text>
+    x="26"
+    y="262"
+    class="ascii row"
+    xml:space="preserve"
+    style="animation-delay:0.450s"
+>                                                           .-::++********=. =#%@@@@%#- .-++++===-.:.                                                  </text>
 
 <text
-x="20"
-y="220"
-class="ascii row"
-xml:space="preserve"
-style="animation-delay:0.360s"
->                                                       :-::=++++++++=:.+%@@%@@%+.:-====-==:.:                                               </text>
+    x="26"
+    y="270"
+    class="ascii row"
+    xml:space="preserve"
+    style="animation-delay:0.468s"
+>                                                             :-+++###%%%*+=---+***+-.  .-+****+=-:.                                                   </text>
 
 <text
-x="20"
-y="228"
-class="ascii row"
-xml:space="preserve"
-style="animation-delay:0.375s"
->                                                        .:-==***###*=:.:-+*#*=-   :=++++=-:.                                                </text>
+    x="26"
+    y="278"
+    class="ascii row"
+    xml:space="preserve"
+    style="animation-delay:0.486s"
+>                                                                =+*####%%@%########*++=#%#****+-.                                                     </text>
 
 <text
-x="20"
-y="236"
-class="ascii row"
-xml:space="preserve"
-style="animation-delay:0.390s"
->                                                          .:=+#***##%#***###**+=-+#*++++=:.                                                 </text>
+    x="26"
+    y="286"
+    class="ascii row"
+    xml:space="preserve"
+    style="animation-delay:0.504s"
+>                                                                :**####%%##%#+--==-==++*#%#***+                                                       </text>
 
 <text
-x="20"
-y="244"
-class="ascii row"
-xml:space="preserve"
-style="animation-delay:0.405s"
->                                                            =+*#**#%%##*=-======+*%%*+++-                                                   </text>
+    x="26"
+    y="294"
+    class="ascii row"
+    xml:space="preserve"
+    style="animation-delay:0.522s"
+>                                                                 +%%%%%%%#**%%@%%%%%%*=+*%###*:                                                       </text>
 
 <text
-x="20"
-y="252"
-class="ascii row"
-xml:space="preserve"
-style="animation-delay:0.420s"
->                                                            .##%%%%#*+*#%%#####*=-+#***+.                                                   </text>
+    x="26"
+    y="302"
+    class="ascii row"
+    xml:space="preserve"
+    style="animation-delay:0.540s"
+>                                                                 :#@%@@@@@%*******+=--+*#%%@#.                                                        </text>
 
 <text
-x="20"
-y="260"
-class="ascii row"
-xml:space="preserve"
-style="animation-delay:0.435s"
->                                                             =%%%@@%%#+++****=-:=+#%%%*.                                                    </text>
+    x="26"
+    y="310"
+    class="ascii row"
+    xml:space="preserve"
+    style="animation-delay:0.558s"
+>                                                                 :+%@%@@@%%%%%%%#%%%####%@@#:                                                         </text>
 
 <text
-x="20"
-y="268"
-class="ascii row"
-xml:space="preserve"
-style="animation-delay:0.450s"
->                                                             :*@%%@@%%%%######****#%@*.                                                     </text>
+    x="26"
+    y="318"
+    class="ascii row"
+    xml:space="preserve"
+    style="animation-delay:0.576s"
+>                                                              -+===#%@%@@@@@@@@@@@@@@@@@@%*=.                                                         </text>
 
 <text
-x="20"
-y="276"
-class="ascii row"
-xml:space="preserve"
-style="animation-delay:0.465s"
->                                                          ----+%@@%@@@@@@@@@@@@@@@@%*-                                                      </text>
+    x="26"
+    y="326"
+    class="ascii row"
+    xml:space="preserve"
+    style="animation-delay:0.594s"
+>                                                            ..=@@*=+#%@@@@@%@%%%%%%%%@%%#*=-                                                          </text>
 
 <text
-x="20"
-y="284"
-class="ascii row"
-xml:space="preserve"
-style="animation-delay:0.480s"
->                                                        ..+@@==*#%@@@%%%%%%%%%%@%%#+=:                                                      </text>
+    x="26"
+    y="334"
+    class="ascii row"
+    xml:space="preserve"
+    style="animation-delay:0.612s"
+>                                                           .::.-#*+++*%%@@@@@@@@@@@%%%#++=-=:                                                         </text>
 
 <text
-x="20"
-y="292"
-class="ascii row"
-xml:space="preserve"
-style="animation-delay:0.495s"
->                                                       .::.+#++++#%%@@@@@@@@@%%%*+==--.                                                     </text>
+    x="26"
+    y="342"
+    class="ascii row"
+    xml:space="preserve"
+    style="animation-delay:0.630s"
+>                                                          .:::---=*#####%%@@@@@@@%@@%#++==-+* .                                                       </text>
 
 <text
-x="20"
-y="300"
-class="ascii row"
-xml:space="preserve"
-style="animation-delay:0.510s"
->                                                      .:::-:-=*##**#%%@@@@@%@%%*+==-:+= .                                                   </text>
+    x="26"
+    y="350"
+    class="ascii row"
+    xml:space="preserve"
+    style="animation-delay:0.648s"
+>                                                         .-=---====+#%@%%%@@%@@@@@@%*++===-## .:                                                      </text>
 
 <text
-x="20"
-y="308"
-class="ascii row"
-xml:space="preserve"
-style="animation-delay:0.525s"
->                                                     .:--:----=*#%%%%%%%%@@@@%*+====-#+ ..                                                  </text>
+    x="26"
+    y="358"
+    class="ascii row"
+    xml:space="preserve"
+    style="animation-delay:0.666s"
+>                                                     .:-==++==+=-=+==+#%%%%@%%@%%%#*+++++*#%=...:.                                                    </text>
 
 <text
-x="20"
-y="316"
-class="ascii row"
-xml:space="preserve"
-style="animation-delay:0.540s"
->                                                  :-=======--====*#%@%%%%%%%#*+===++##:...:                                                 </text>
+    x="26"
+    y="366"
+    class="ascii row"
+    xml:space="preserve"
+    style="animation-delay:0.684s"
+>                                               ..:::=**+*+*++++==---==*#%@@@@@@@%%##***#%%#=..::::--:.                                                </text>
 
 <text
-x="20"
-y="324"
-class="ascii row"
-xml:space="preserve"
-style="animation-delay:0.555s"
->                                            ..:::+*=++++====-::-=+*%@@@@%%%%#****##%#-..:::--:.                                             </text>
+    x="26"
+    y="374"
+    class="ascii row"
+    xml:space="preserve"
+    style="animation-delay:0.702s"
+>                                            ..:=+-:+%#++**########*=+##--%%%%%%%%@%%##%##%%%*: ..:=--=+=..                                            </text>
 
 <text
-x="20"
-y="332"
-class="ascii row"
-xml:space="preserve"
-style="animation-delay:0.570s"
->                                         .:-==:-#%+=*+**#####*+=*%=:#%#%@@@@%###%#*%%%*: ..:=:-==:.                                         </text>
+    x="26"
+    y="382"
+    class="ascii row"
+    xml:space="preserve"
+    style="animation-delay:0.720s"
+>                                         .:-=**+=-*@%+++***#%##%@###%@%+**+#@@@@@%%##%%##%@@@%=.:-==:=-++-::.                                         </text>
 
 <text
-x="20"
-y="340"
-class="ascii row"
-xml:space="preserve"
-style="animation-delay:0.585s"
->                                      .::=++=--#@*=++*+*##*#%*#%@%+++=#@%%%%#**#%**%@@@%-.:-=:--=+-::.                                      </text>
+    x="26"
+    y="390"
+    class="ascii row"
+    xml:space="preserve"
+    style="animation-delay:0.738s"
+>                                      :--+-=*+-:-#@%+=+++#*+*##+=+#%%%+---*%%**##*+++#%#*#%@@@@+::-=:-=:=*=---:..                                     </text>
 
 <text
-x="20"
-y="348"
-class="ascii row"
-xml:space="preserve"
-style="animation-delay:0.600s"
->                                   .-:===*-:.=%%*====*+=+**--+%%#+:::*%*+++++==+%#**%@%@%+..--:=:-+=:--..                                   </text>
+    x="26"
+    y="398"
+    class="ascii row"
+    xml:space="preserve"
+    style="animation-delay:0.756s"
+>                                   :-===-+=*=::-#@#=-====*+=-*#=+#@%###+-+#+=-::::---+#%####*#%%#=:=-.-=:-*=:==-:::.                                  </text>
 
 <text
-x="20"
-y="356"
-class="ascii row"
-xml:space="preserve"
-style="animation-delay:0.615s"
->                                .:----==*-::=%#=---=-==--++=*%@%*#*=+*-::...:::-*%***++*###=-=.:=::+-:==-::..                               </text>
+    x="26"
+    y="406"
+    class="ascii row"
+    xml:space="preserve"
+    style="animation-delay:0.774s"
+>                                .:---:----++-:-%@*-------==---=#%%#@%%%%%#*-::.     ..=%#=:-:-=-+%#*=::-=:-+-:=+=-::::..                              </text>
 
 <text
-x="20"
-y="364"
-class="ascii row"
-xml:space="preserve"
-style="animation-delay:0.630s"
->                              .:--:::--==::=@#-:-::::--:::=##*#@%%%%#+-:..    ..-%#=::::-:+#*=:::-::=::==-::::...                           </text>
+    x="26"
+    y="414"
+    class="ascii row"
+    xml:space="preserve"
+    style="animation-delay:0.792s"
+>                             :-=-:-:----==--:=%%+=-----::--:---+-*#*%@%%%%*-::.      .=%@%+.::--=+++=--:--:==:--=+-:::::::.                           </text>
 
 <text
-x="20"
-y="372"
-class="ascii row"
-xml:space="preserve"
-style="animation-delay:0.645s"
->                           :++-:::----=-::+%#---:::::-::::--:**#@%%%@#-:..     .-*@@*::.:-====--:--:=-:--==:::::::.                         </text>
+    x="26"
+    y="422"
+    class="ascii row"
+    xml:space="preserve"
+    style="animation-delay:0.810s"
+>                           :=*#*+=::---=++--+%%+--=-:::::-:::----=###%@%%@@#:..      .=#%@@#..:-++++====--:==:======----:-::.                         </text>
 
 <text
-x="20"
-y="380"
-class="ascii row"
-xml:space="preserve"
-style="animation-delay:0.660s"
->                         :+#*++=::---=+--*%#=---::::::::::--==###@@%@@#-..     .:+#%@#:.:-+=+=-----:=-:-==-=----::::.                       </text>
+    x="26"
+    y="430"
+    class="ascii row"
+    xml:space="preserve"
+    style="animation-delay:0.828s"
+>                          +%%#+=*++=-===++=*%%*==-:--::::::::--==++%%#%@%#=*#- ..    .-+#%%@#:--=+*+=====--==::===-+=-++-:=:::                        </text>
 
 <text
-x="20"
-y="388"
-class="ascii row"
-xml:space="preserve"
-style="animation-delay:0.675s"
->                        +%%+==*++=:===+=+##+---:-::::::::::-==+%#*%@#:=%= .    .:=+#%@#:--+++=-=----=-::---==-=+-:-::.                      </text>
+    x="26"
+    y="438"
+    class="ascii row"
+    xml:space="preserve"
+    style="animation-delay:0.846s"
+>                        .*@%+-*+*#+%+-+**++#%#====----::::::::---=+*%%*#@#=+@%- .   ..:-+#%%@*:-***+======-==------=+-+*+:-=.-:                       </text>
 
 <text
-x="20"
-y="396"
-class="ascii row"
-xml:space="preserve"
-style="animation-delay:0.690s"
->                      .*@#=-*=**+%===*+=*#+-----:-:..::::::--==+%#+#%*#%%- .  ...:=*#%@+:=*++===----=-------=-=*=:--.-.                     </text>
+    x="26"
+    y="446"
+    class="ascii row"
+    xml:space="preserve"
+    style="animation-delay:0.864s"
+>                       :#@%+=+#+*%*#%++=#+***+----=---:.::::::----==+%%++%%%%%%:...:.::-=+#%%%=+#**+====-=-==----====-+#*--=--=                       </text>
 
 <text
-x="20"
-y="404"
-class="ascii row"
-xml:space="preserve"
-style="animation-delay:0.705s"
->                     .*%#==+*=+%+##=-*++++=-::--:::..::::::::-=-+%#-+###%%:.::.:::-=*#%%=+*++===----=-----=---=**-:----                     </text>
+    x="26"
+    y="454"
+    class="ascii row"
+    xml:space="preserve"
+    style="animation-delay:0.882s"
+>                      .+%%*=+*#*=%%*%*==*+**+++-::----:::-:--:::--==-+%@*:++*#%*::::::::-=+%@%++#+++====-====--======-=*#*=--==-                      </text>
 
 <text
-x="20"
-y="412"
-class="ascii row"
-xml:space="preserve"
-style="animation-delay:0.720s"
->                     -*#+-++#*=%#*%=-+++*===-:::-::::::::::::----+%%-:==++=::::::::-=%@%=*+=====---------=--=--***=--=-.                    </text>
+    x="26"
+    y="462"
+    class="ascii row"
+    xml:space="preserve"
+    style="animation-delay:0.900s"
+>                     .-+##=++*#%+#%#@%=*%*##+===::----:::----------===+%@*:--::=-:::-::.:-+%%@*#*+++====---==--=====#+-#***==+=-.                     </text>
 
 <text
-x="20"
-y="420"
-class="ascii row"
-xml:space="preserve"
-style="animation-delay:0.735s"
->                    :=**=++*#%=#%#@**%***=---::---:::::-----::-=-=+%%-:-:-=-::::...:+@%%**+====------------=*#-*+++-++=:                    </text>
+    x="26"
+    y="470"
+    class="ascii row"
+    xml:space="preserve"
+    style="animation-delay:0.918s"
+>                     :=##++**##%++@#%%#@%*#*-::-===+=-::-------=-:-====+%@#:=+***=:::::...*@%%*#*+++====---==-=-:-=*%%-*#**=*#+=:                     </text>
 
 <text
-x="20"
-y="428"
-class="ascii row"
-xml:space="preserve"
-style="animation-delay:0.750s"
->                   .-**+++*##%++%#%%#%**+-::=====-:::::-----:::---=*%%==++++-::::..:#%%%**+====--------=-:-+#%==#++=#*=-                    </text>
+    x="26"
+    y="478"
+    class="ascii row"
+    xml:space="preserve"
+    style="animation-delay:0.936s"
+>                    .=+++*#+#%%%%=#%#%%%%#*+=-=*#+++=-::::--------.:=--=*%@#-=--===--::. =%%%%##*++======----=++==++%%==##**%#++-                     </text>
 
 <text
-x="20"
-y="436"
-class="ascii row"
-xml:space="preserve"
-style="animation-delay:0.765s"
->                   -===*#++%%%%=*%%@%%#+===*##+=-:..:::------:.:---=#@%--::-==-::..+##%#**+====-------==+++=*%+:*#*##++-.                   </text>
+    x="26"
+    y="486"
+    class="ascii row"
+    xml:space="preserve"
+    style="animation-delay:0.954s"
+>                    :=+++##**%%%@*+%@%@%%%*++*%%#*+-::::.:-==---=-:.:===+#%@*++++*+=--::.###%###*++=====-----===**++%@*:*###***+=.                    </text>
 
 <text
-x="20"
-y="444"
-class="ascii row"
-xml:space="preserve"
-style="animation-delay:0.780s"
->                   -===+#*+%%%%**%@%%%%*=+*#*+=-:-==:.--------:.:-==+%@#+*#%#+--:..*+*###*+==--------:--=*++#@#.-++***++:                   </text>
+    x="26"
+    y="494"
+    class="ascii row"
+    xml:space="preserve"
+    style="animation-delay:0.972s"
+>                    -+==+*#**%%%%%+#@%%@@%*+*##*+=--+*%#=:-===--=+=: :===+%@%**#%@%+=-:.-#++##%#*++===----------=#+*%%%-:=*#***#+:                    </text>
 
 <text
-x="20"
-y="452"
-class="ascii row"
-xml:space="preserve"
-style="animation-delay:0.795s"
->                   -===+#*+#%%%%=*%%%@%*++++==-=*%@@*:-------+=: :===*%@*+==**=-:.-#+=*%#*+==------::::-:=++#%%+:+*#+*#+-                   </text>
+    x="26"
+    y="502"
+    class="ascii row"
+    xml:space="preserve"
+    style="animation-delay:0.990s"
+>                    -=++*##**#%%%@#+%@%@@%*+*++++=*%@@%#+--====--+*+: :==+#%%%*+:.**=-..+%#**%%#*+===-----::::---=++%%@%+###*#%++-                    </text>
 
 <text
-x="20"
-y="460"
-class="ascii row"
-xml:space="preserve"
-style="animation-delay:0.810s"
->                  .=-=+##*+*#%%@#*@%%%%*=+=+==*%@@#===----=--=*+- :==+#@%**::*=-..+%#*#@#*++==---::::.:=+--=#%@@###*##++-:                  </text>
+    x="26"
+    y="510"
+    class="ascii row"
+    xml:space="preserve"
+    style="animation-delay:1.008s"
+>                    +===*#%#**#%%@%#%%%%%%*+**+==#%@%#+===---=====+**- .=++#@%###=**=-.:###*%@%#**++===---::::+#*=-+%%%@%#####+*+-:                   </text>
 
 <text
-x="20"
-y="468"
-class="ascii row"
-xml:space="preserve"
-style="animation-delay:0.825s"
->                  .=====*#+**#%@%*#%%%@%+**=-+%@%*====-----==-=*+- .-=*%@#**++=-.:%#*#@%#**++++=-::.:::=##=-*%%@%+##*+*+-:.                 </text>
+    x="26"
+    y="518"
+    class="ascii row"
+    xml:space="preserve"
+    style="animation-delay:1.026s"
+>                   .-=+*++##***#%%%%*#%%%@%*##+-*%%%%*+++=-=====++=+**=  :=+#@%#****=-:=%#*%@%%##****+=-::.::::*%#--#@%%%*#*****+-:.                  </text>
 
 <text
-x="20"
-y="476"
-class="ascii row"
-xml:space="preserve"
-style="animation-delay:0.840s"
->                  :--+*##*+****#%##%@@@%##+-+%@%%**+==--=-==+++++*=  .-+%%***#+::+%%*@%%##**#*++=-:..:..+*+:=#@%##+=#%##+:.                 </text>
-
-<text
-x="20"
-y="484"
-class="ascii row"
-xml:space="preserve"
-style="animation-delay:0.855s"
->                  ----=*##*+%%%%%%#%%%@%%%##%@%%%###+--===+*****++*=.  .=#*===+==##*%%@%###%%#**+=:.:--.=*+:-+%#*%+#@%%#*-:.                </text>
-
-<text
-x="20"
-y="492"
-class="ascii row"
-xml:space="preserve"
-style="animation-delay:0.870s"
->                 .----=+*%*+#%%%%@%%@%@%%%%%%%@%%%%%#=-==+*#%%%%%#+*+:  .**==+*##%+%@%%##%@%%%##*=-*%*= -#+:.-***###*++=+++-                </text>
-
-<text
-x="20"
-y="500"
-class="ascii row"
-xml:space="preserve"
-style="animation-delay:0.885s"
->                 :=--=+*#%#-+###%@@@@%@%%%%%%%%%%%%#+===+**#%%%%@@%##*-  .=+**#%@**@%%%%@@%%%%#**+=%@@%::#%+:.-=#####*+++==:.               </text>
-
-<text
-x="20"
-y="508"
-class="ascii row"
-xml:space="preserve"
-style="animation-delay:0.900s"
->                 -*=:::-+#%+-#%%%@@@@%@%#%%%%%%%#%#+====+**###%%%%@@@%%*-  .:-=%#+%%%%%@@%%####***-#%%%= +%#*++*#%@%%#*+-:==:               </text>
-
-<text
-x="20"
-y="516"
-class="ascii row"
-xml:space="preserve"
-style="animation-delay:0.915s"
->                .++--+**=+%%-+##%%@@@@@%#%%%%%%%#**=-===+**##%%%%%%%%@@@@#+...=%=#%%@@@%%###******-*@%%*.-*##*=%%#***+++===-:               </text>
-
-<text
-x="20"
-y="524"
-class="ascii row"
-xml:space="preserve"
-style="animation-delay:0.930s"
->                -*++:.-+%##%#:*@%%@@@@@%%%###%%#**+-:-==+*####%%%%%%%@%%%@@%*+#+*%%%%**+++******#*-+@%@#:-++*++#+***###+:-:::.              </text>
-
-<text
-x="20"
-y="532"
-class="ascii row"
-xml:space="preserve"
-style="animation-delay:0.945s"
->               .**+*+.:=**+*%*:#@%%%@@%@##%####***=::-==+**#%%%%%%%%@@%*++**##%--#*+===+**+***#***==@%@#-:=+*=#%%%@@@@%*---=-.              </text>
-
-<text
-x="20"
-y="540"
-class="ascii row"
-xml:space="preserve"
-style="animation-delay:0.960s"
->               -%%#**- :=*###%+-*%@@@@%@#+**#**++=-.:-==++*###%%@@@@%%@@#=::-**:-=*#####**++**#***=-%@@%=:-==+@%@%%%%%*=-=---:              </text>
-
-<text
-x="20"
-y="548"
-class="ascii row"
-xml:space="preserve"
-style="animation-delay:0.975s"
->               +%*#%%*: .-+=*%#**+#%%@@%%*-:::::-=-.:-==+*#%%%%%@@%%%%%##*==*@*..:+%@%#***++=+++*+-.#@%%#=-=-%%%%%#%%%*=-:::::              </text>
-
-<text
-x="20"
-y="556"
-class="ascii row"
-xml:space="preserve"
-style="animation-delay:0.990s"
->               =+===*%%- .+#*#%##%%%@@@@@@#=----=+:.-=+++++**#%%%@@%%#++=-=+%%=-..-+****+++++++=+*+.*@%@@#*=+@%@@%%%%@*-.  .-:              </text>
-
-<text
-x="20"
-y="564"
-class="ascii row"
-xml:space="preserve"
-style="animation-delay:1.005s"
->               -==++*#%@+ .=#%@%#%@@@@@@@%@#*****+.:++**++**#%%%@@%#*+==+**+%#-----==-=+**+++++++=+:=@%%%%*=#%%%#*++*%#++*#%%#.             </text>
-
-<text
-x="20"
-y="572"
-class="ascii row"
-xml:space="preserve"
-style="animation-delay:1.020s"
->              .:=+*#%%#**:   -#@%%%%@@@@@@%@#***#=.=+**#%%@@@@@%%##*+*#%%@@%%*=-...-***++++++===++-::%@%%%#*@@@@%%%%%%%@@@@#+=.             </text>
+    x="26"
+    y="526"
+    class="ascii row"
+    xml:space="preserve"
+    style="animation-delay:1.044s"
+>                   :=-=+#%%#***###%%%%%@@@%%%*+#%@%@%##*======+++***+*#+.  :=#%#***#=-=#%%#@%@%###%%#**+=: .:- =*#=:+%@%#%*+%@%@%+.:                  </text>
+
+<text
+    x="26"
+    y="534"
+    class="ascii row"
+    xml:space="preserve"
+    style="animation-delay:1.062s"
+>                   -====+*#%**%@@@@@%%%@@@%%%%%@@%@%%%%%*-=+++*###%%%**#*-  .-##+==*#+*%##@%@%%%%%%%%##*+::===.-##+:-*%%*%*%%##**+--.                 </text>
+
+<text
+    x="26"
+    y="542"
+    class="ascii row"
+    xml:space="preserve"
+    style="animation-delay:1.080s"
+>                  .-=-=+**#%*+#%%%%@@@@@@@%%@@@%%@@%%%@%#===+**#%%%@@@%*#*=.  +#+++#%%%%*%%%%%%%@@%%%###+=%@%#- *%+::-+*#%%#***++***-                 </text>
+
+<text
+    x="26"
+    y="550"
+    class="ascii row"
+    xml:space="preserve"
+    style="animation-delay:1.098s"
+>                  :+=-=+*##%%=+%%%%@@%@@@@%%%%%@@%%%%%%*=+==+*##%%%%%@@@%%#+:  :=+**#@%+%@%%%%@@@%@%%###*=%%@@* +%%+-:-+#%%%%#**++=-:.                </text>
+
+<text
+    x="26"
+    y="558"
+    class="ascii row"
+    xml:space="preserve"
+    style="animation-delay:1.116s"
+>                  -*+-:-:-+%@*-*%%%@@@@@%@%%%@@@%%%%%%#+=++++*#%%%%%%%%@@@@%%*-  .:-*@+#%%%%@@@@%%%%%#*##-#@%%#::#%%#**#%%@%%%#*+--+=:                </text>
+
+<text
+    x="26"
+    y="566"
+    class="ascii row"
+    xml:space="preserve"
+    style="animation-delay:1.134s"
+>                 .+*+-=*##+*%%++##%%@@@@@@%%@@%%@@@%##*=-==+**###%%%%%@%%%%@@@@#=:::#%=%%@@@@%%%#########=*@%@%=:+##%#+%%%***++++=+--:                </text>
+
+<text
+    x="26"
+    y="574"
+    class="ascii row"
+    xml:space="preserve"
+    style="animation-delay:1.152s"
+>                 =***+..-*%%#%%-+@%%%@@@@@@%%%%%%%%##*+:-==+**#%%%%@%%%@@@@%%%@@@%##%=#%%%#*++******#####=+@%@%+:=+*#+*%**##%%%%=---::.               </text>
+
+<text
+    x="26"
+    y="582"
+    class="ascii row"
+    xml:space="preserve"
+    style="animation-delay:1.170s"
+>                .*#***=.=+##**%%-*@@%%@@@@@%%@%%%%#***=:-==++*#%%%%%%%@@@@%%#*+++*###.+##*+=+*****#######+-%%%@*:=+**=%@@@@@@@%#+-===-.               </text>
+
+<text
+    x="26"
+    y="590"
+    class="ascii row"
+    xml:space="preserve"
+    style="animation-delay:1.188s"
+>                -%%%##+. -+###%@#=+#@@@@@%@%***##**++=:.-==++*##%%%%@@@@@%@@@%*=:-*#=:=+#%%%%###****###**=:%@%@#-:-+=#@%%%%%%%%*=====-:               </text>
+
+<text
+    x="26"
+    y="598"
+    class="ascii row"
+    xml:space="preserve"
+    style="animation-delay:1.206s"
+>                +%##%%%*. .=+=*%%##**%%%@@%%#-:..::-=+::-=+++*%%%@@@@@@@@%%%%##+++%%=..-*%@@%###**+++****=.*@%@%*+=++%%@%%%%%%%*=-::::-               </text>
+
+<text
+    x="26"
+    y="606"
+    class="ascii row"
+    xml:space="preserve"
+    style="animation-delay:1.224s"
+>                =*===*#@#: :*%##%%#%%%@@@@@@@%+=====++.:=++**++**#%%@%@@@%#*+===+#@*=-.:=******++****++*#*.+@%@@@##=#@%@@%%%%@%=:  .:--.              </text>
+
+<text
+    x="26"
+    y="614"
+    class="ascii row"
+    xml:space="preserve"
+    style="animation-delay:1.242s"
+>               .-+=+**#%@%= .=#%@@%%@@@@@@@@%@%**####=.=***#**##%%%%@@%%%#*++*##*#@+-----====+*#***+***++*--%%@%%%*=%%%%%*+**%%#+*#%%%#:              </text>
+
+<text
+    x="26"
+    y="622"
+    class="ascii row"
+    xml:space="preserve"
+    style="animation-delay:1.260s"
+>               ::=*##%%%#*#:   -#%@%%@@@@@@@@%@%**###:-**##%%@@@@@@@%%##***#%@@@%%%=+-.:.-*##****+++===++=-.#@%%@%*#@%@@%%%%%%%@@@@%#++.              </text>
+
+<rect
+    x="-160"
+    y="45"
+    width="160"
+    height="576"
+    fill="url(#scanGradient)"
+    opacity="0.5"
+    class="scan"
+/>
+
+<text
+    x="26"
+    y="632"
+    font-family="Courier New, monospace"
+    font-size="9"
+    letter-spacing="1"
+    fill="#8b949e"
+>
+    SUBJECT: REIIDON
+</text>
+
+
+<text
+    x="663"
+    y="632"
+    text-anchor="end"
+    font-family="Courier New, monospace"
+    font-size="9"
+    fill="#58a6ff"
+>
+    SCAN COMPLETE
+</text>
 </svg>

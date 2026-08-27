@@ -11,7 +11,7 @@
 <br>
 
 <a href="https://github.com/reiidon">
-  <img src="contrib-heatmap.svg" width="100%" alt="GitHub contribution activity" />
+  <img src="./contrib-heatmap.svg" width="100%" alt="GitHub contribution activity" />
 </a>
 
 </div>
@@ -24,22 +24,17 @@
 <br>
 
 <table width="100%">
-<tr>
+  <tr>
+    <td width="50%" align="center" valign="middle">
+      <img src="./avi-ascii.svg" width="100%" alt="ASCII portrait" />
+    </td>
 
-<td width="50%" align="center" valign="middle">
-
-<img src="avi-ascii.svg" width="100%" alt="ASCII portrait" />
-
-</td>
-
-<td width="50%" align="center" valign="middle">
-
-<img src="info-card.svg" width="100%" alt="Developer information card" />
-
-</td>
-
-</tr>
+    <td width="50%" align="center" valign="middle">
+      <img src="./info-card.svg" width="100%" alt="Developer information card" />
+    </td>
+  </tr>
 </table>
+
 
 <!-- ========================= -->
 <!--         ABOUT ME          -->
@@ -53,6 +48,7 @@
 $ whoami
 
 Shins
+
 AI Developer
 Python Developer
 Computer Science Student
@@ -61,10 +57,11 @@ I build AI-powered applications and enjoy turning ideas
 into real-world software.
 ```
 
-<table>
-<tr>
 
-<td width="50%" valign="top">
+<table>
+  <tr>
+
+    <td width="50%" valign="top">
 
 ### 🔭 Currently Building
 
@@ -75,9 +72,9 @@ into real-world software.
 > Full-stack projects
 ```
 
-</td>
+    </td>
 
-<td width="50%" valign="top">
+    <td width="50%" valign="top">
 
 ### 🧠 Interested In
 
@@ -88,9 +85,9 @@ into real-world software.
 > Automation
 ```
 
-</td>
+    </td>
 
-</tr>
+  </tr>
 </table>
 
 
@@ -118,12 +115,14 @@ AI / ML
 ├── Agentic AI
 └── Computer Vision
 
+
 Backend
 
 ├── Python
 ├── FastAPI
 ├── Flask
 └── REST APIs
+
 
 Frontend
 
@@ -135,7 +134,7 @@ Frontend
 
 
 <!-- ========================= -->
-<!--    FEATURED PROJECTS      -->
+<!--     FEATURED PROJECTS     -->
 <!-- ========================= -->
 
 <br>
@@ -143,9 +142,9 @@ Frontend
 ## Featured Projects
 
 <table>
-<tr>
+  <tr>
 
-<td width="50%" valign="top">
+    <td width="50%" valign="top">
 
 ### 🤖 AI Research Agent
 
@@ -153,6 +152,7 @@ Frontend
 AI-powered research system
 
 Features
+
 • Agentic AI
 • RAG
 • LLMs
@@ -160,9 +160,9 @@ Features
 • AI workflow design
 ```
 
-</td>
+    </td>
 
-<td width="50%" valign="top">
+    <td width="50%" valign="top">
 
 ### 📄 AI Resume Screening System
 
@@ -170,19 +170,20 @@ Features
 AI-powered resume analysis
 
 Features
+
 • Resume parsing
 • AI analysis
 • Candidate matching
 • Document processing
 ```
 
-</td>
+    </td>
 
-</tr>
+  </tr>
 
-<tr>
+  <tr>
 
-<td width="50%" valign="top">
+    <td width="50%" valign="top">
 
 ### 🧠 LifePilot
 
@@ -190,15 +191,16 @@ Features
 Full-stack productivity system
 
 Features
+
 • Authentication
 • JWT
 • Modern workflows
 • AI integration
 ```
 
-</td>
+    </td>
 
-<td width="50%" valign="top">
+    <td width="50%" valign="top">
 
 ### 💬 Local LLM Chatbot
 
@@ -206,14 +208,15 @@ Features
 Local AI chatbot system
 
 Features
+
 • Local LLM
 • Conversational AI
 • Python backend
 ```
 
-</td>
+    </td>
 
-</tr>
+  </tr>
 </table>
 
 
@@ -231,12 +234,14 @@ $ git status
 On branch main
 
 Working on:
+
   → AI projects
   → Backend systems
   → LLM applications
   → Real-world software
 
 Status:
+
   ● learning
   ● building
   ● shipping
@@ -244,7 +249,7 @@ Status:
 
 
 <!-- ========================= -->
-<!--         FOOTER            -->
+<!--          FOOTER           -->
 <!-- ========================= -->
 
 <br>
