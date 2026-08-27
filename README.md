@@ -10,7 +10,9 @@
 
 <br>
 
-<img src="contrib-heatmap.svg" width="100%" />
+<a href="https://github.com/reiidon">
+  <img src="contrib-heatmap.svg" width="100%" alt="GitHub contribution activity" />
+</a>
 
 </div>
 
