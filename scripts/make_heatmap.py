@@ -1,6 +1,8 @@
 from pathlib import Path
-import random
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
+import json
+import os
+import urllib.request
 
 
 # -------------------------------------------------
@@ -29,7 +31,6 @@ PADDING_TOP = 50
 PADDING_BOTTOM = 34
 
 TITLE = "contribution activity"
-SUBTITLE = f"@{USERNAME}"
 
 BACKGROUND = "#0d1117"
 EMPTY_COLOR = "#161b22"
@@ -45,58 +46,167 @@ MUTED = "#8b949e"
 
 
 # -------------------------------------------------
-# Generate contribution pattern
+# Get GitHub Token
 # -------------------------------------------------
 
-random.seed(42)
+TOKEN = os.getenv("GITHUB_TOKEN")
+
+if not TOKEN:
+    raise RuntimeError(
+        "\nGITHUB_TOKEN was not found.\n\n"
+        "Windows PowerShell:\n"
+        '$env:GITHUB_TOKEN = "your_github_token"\n\n'
+        "Then run:\n"
+        "python scripts/contrib-heatmap.py\n"
+    )
+
+
+# -------------------------------------------------
+# GitHub GraphQL Query
+# -------------------------------------------------
+
+today = datetime.now(timezone.utc)
+start_date = today - timedelta(weeks=WEEKS)
+
+query = """
+query($login: String!, $from: DateTime!, $to: DateTime!) {
+  user(login: $login) {
+    contributionsCollection(from: $from, to: $to) {
+      contributionCalendar {
+        totalContributions
+
+        weeks {
+          contributionDays {
+            date
+            contributionCount
+            contributionLevel
+          }
+        }
+      }
+    }
+  }
+}
+"""
+
+
+payload = {
+    "query": query,
+    "variables": {
+        "login": USERNAME,
+        "from": start_date.isoformat(),
+        "to": today.isoformat()
+    }
+}
+
+
+# -------------------------------------------------
+# Request Real GitHub Contribution Data
+# -------------------------------------------------
+
+request = urllib.request.Request(
+    "https://api.github.com/graphql",
+    data=json.dumps(payload).encode("utf-8"),
+    headers={
+        "Authorization": f"Bearer {TOKEN}",
+        "Content-Type": "application/json",
+        "User-Agent": "GitHub-Contribution-Heatmap"
+    },
+    method="POST"
+)
+
+
+try:
+    with urllib.request.urlopen(request) as response:
+        result = json.loads(response.read().decode("utf-8"))
+
+except Exception as error:
+    raise RuntimeError(
+        f"\nCould not fetch GitHub contribution data.\n{error}"
+    )
+
+
+# -------------------------------------------------
+# Check For GitHub API Errors
+# -------------------------------------------------
+
+if "errors" in result:
+    raise RuntimeError(
+        "\nGitHub GraphQL Error:\n"
+        + json.dumps(result["errors"], indent=2)
+    )
+
+
+user = result.get("data", {}).get("user")
+
+if not user:
+    raise RuntimeError(
+        f"\nGitHub user '{USERNAME}' was not found."
+    )
+
+
+calendar = (
+    user["contributionsCollection"]
+    ["contributionCalendar"]
+)
+
+total_contributions = calendar["totalContributions"]
+weeks_data = calendar["weeks"]
+
+
+# -------------------------------------------------
+# Contribution Level Mapping
+# -------------------------------------------------
+
+LEVEL_MAP = {
+    "NONE": 0,
+    "FIRST_QUARTILE": 1,
+    "SECOND_QUARTILE": 2,
+    "THIRD_QUARTILE": 3,
+    "FOURTH_QUARTILE": 4
+}
+
+
+# -------------------------------------------------
+# Convert GitHub Data
+# -------------------------------------------------
 
 contributions = []
 
-for week in range(WEEKS):
+for week_data in weeks_data:
+
     column = []
 
-    # More natural activity pattern
-    active_week = random.random() < 0.42
+    for day_data in week_data["contributionDays"]:
 
-    for day in range(DAYS):
-
-        if active_week and random.random() < 0.18:
-
-            level = random.choices(
-                [1, 2, 3, 4],
-                weights=[45, 30, 18, 7]
-            )[0]
-
-        else:
-            level = 0
+        level = LEVEL_MAP.get(
+            day_data["contributionLevel"],
+            0
+        )
 
         column.append(level)
+
+    # Make sure every week has 7 days
+    while len(column) < DAYS:
+        column.append(0)
 
     contributions.append(column)
 
 
-# -------------------------------------------------
-# Add some natural clusters
-# -------------------------------------------------
+# Keep exactly the latest 53 weeks
 
-for start_week in [6, 20, 34, 45, 49]:
+if len(contributions) > WEEKS:
+    contributions = contributions[-WEEKS:]
 
-    for week_offset in range(random.randint(1, 3)):
 
-        week = start_week + week_offset
-
-        if week >= WEEKS:
-            continue
-
-        for _ in range(random.randint(1, 3)):
-
-            day = random.randint(0, DAYS - 1)
-
-            contributions[week][day] = random.choice([2, 3, 4])
+while len(contributions) < WEEKS:
+    contributions.insert(
+        0,
+        [0] * DAYS
+    )
 
 
 # -------------------------------------------------
-# SVG dimensions
+# SVG Dimensions
 # -------------------------------------------------
 
 grid_width = (
@@ -123,10 +233,11 @@ svg_height = (
 
 
 # -------------------------------------------------
-# SVG
+# SVG Start
 # -------------------------------------------------
 
 svg = []
+
 
 svg.append(
     f'''<svg
@@ -134,10 +245,15 @@ xmlns="http://www.w3.org/2000/svg"
 width="100%"
 viewBox="0 0 {svg_width} {svg_height}"
 role="img"
-aria-label="GitHub contribution activity"
+aria-label="{total_contributions} GitHub contributions in the last year"
 >
 '''
 )
+
+
+# -------------------------------------------------
+# Styles
+# -------------------------------------------------
 
 svg.append(
     f'''
@@ -157,6 +273,12 @@ svg.append(
 }}
 
 .footer {{
+    font-family: "Courier New", monospace;
+    font-size: 11px;
+    fill: {MUTED};
+}}
+
+.total {{
     font-family: "Courier New", monospace;
     font-size: 11px;
     fill: {MUTED};
@@ -203,6 +325,7 @@ svg.append(
 '''
 )
 
+
 svg.append(
     f'''
 <text
@@ -210,14 +333,14 @@ svg.append(
     y="28"
     class="username"
 >
-    {SUBTITLE}
+    @{USERNAME}
 </text>
 '''
 )
 
 
 # -------------------------------------------------
-# Contribution squares
+# Contribution Squares
 # -------------------------------------------------
 
 colors = [
@@ -228,18 +351,21 @@ colors = [
     GREEN_4
 ]
 
+
 for week in range(WEEKS):
 
     for day in range(DAYS):
 
         level = contributions[week][day]
 
-        x = PADDING_LEFT + week * (
-            CELL_SIZE + CELL_GAP
+        x = (
+            PADDING_LEFT
+            + week * (CELL_SIZE + CELL_GAP)
         )
 
-        y = PADDING_TOP + day * (
-            CELL_SIZE + CELL_GAP
+        y = (
+            PADDING_TOP
+            + day * (CELL_SIZE + CELL_GAP)
         )
 
         color = colors[level]
@@ -264,6 +390,7 @@ for week in range(WEEKS):
 
 footer_y = svg_height - 14
 
+
 svg.append(
     f'''
 <text
@@ -278,6 +405,24 @@ svg.append(
 
 
 # -------------------------------------------------
+# Contribution Count
+# -------------------------------------------------
+
+svg.append(
+    f'''
+<text
+    x="{svg_width - PADDING_RIGHT}"
+    y="{footer_y}"
+    text-anchor="end"
+    class="total"
+>
+    {total_contributions} contributions
+</text>
+'''
+)
+
+
+# -------------------------------------------------
 # Close SVG
 # -------------------------------------------------
 
@@ -285,7 +430,7 @@ svg.append("</svg>")
 
 
 # -------------------------------------------------
-# Save
+# Save SVG
 # -------------------------------------------------
 
 OUTPUT_PATH.write_text(
@@ -293,7 +438,14 @@ OUTPUT_PATH.write_text(
     encoding="utf-8"
 )
 
+
+# -------------------------------------------------
+# Done
+# -------------------------------------------------
+
 print()
 print("Done!")
+print(f"User: {USERNAME}")
+print(f"Real contributions: {total_contributions}")
 print(f"Created: {OUTPUT_PATH}")
 print(f"Size: {svg_width} x {svg_height}")
