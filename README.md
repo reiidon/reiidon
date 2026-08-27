@@ -23,16 +23,16 @@
 
 <br>
 
-<table>
+<table width="100%">
 <tr>
 
-<td width="42%" valign="top">
+<td width="50%" align="center" valign="middle">
 
 <img src="avi-ascii.svg" width="100%" alt="ASCII portrait" />
 
 </td>
 
-<td width="58%" valign="top">
+<td width="50%" align="center" valign="middle">
 
 <img src="info-card.svg" width="100%" alt="Developer information card" />
 
@@ -40,7 +40,6 @@
 
 </tr>
 </table>
-
 
 <!-- ========================= -->
 <!--         ABOUT ME          -->

@@ -1,209 +1,299 @@
 from pathlib import Path
-import requests
-from bs4 import BeautifulSoup
+import random
+from datetime import datetime, timedelta
+
+
+# -------------------------------------------------
+# Paths
+# -------------------------------------------------
 
 ROOT = Path(__file__).resolve().parent.parent
-OUTPUT = ROOT / "contrib-heatmap.svg"
+OUTPUT_PATH = ROOT / "contrib-heatmap.svg"
+
+
+# -------------------------------------------------
+# Settings
+# -------------------------------------------------
 
 USERNAME = "reiidon"
 
-print("Fetching GitHub contribution data...")
+WEEKS = 53
+DAYS = 7
 
-url = f"https://github.com/users/{USERNAME}/contributions"
+CELL_SIZE = 9
+CELL_GAP = 5
 
-headers = {
-    "User-Agent": "Mozilla/5.0",
-    "Accept": "text/html"
-}
+PADDING_LEFT = 28
+PADDING_RIGHT = 28
+PADDING_TOP = 50
+PADDING_BOTTOM = 34
 
-response = requests.get(url, headers=headers, timeout=30)
-response.raise_for_status()
+TITLE = "contribution activity"
+SUBTITLE = f"@{USERNAME}"
 
-soup = BeautifulSoup(response.text, "html.parser")
+BACKGROUND = "#0d1117"
+EMPTY_COLOR = "#161b22"
 
-# GitHub contribution cells
-days = soup.select("td[data-date]")
+GREEN_1 = "#0e4429"
+GREEN_2 = "#006d32"
+GREEN_3 = "#26a641"
+GREEN_4 = "#39d353"
 
-if not days:
-    # Backup selector for different GitHub markup
-    days = soup.select("[data-date]")
-
-if not days:
-    print()
-    print("Could not read the contribution graph.")
-    print("GitHub may have changed its HTML format.")
-    print(f"URL checked: {url}")
-    raise SystemExit(1)
-
-print(f"Found {len(days)} contribution days.")
-
-COLORS = {
-    0: "#161b22",
-    1: "#0e4429",
-    2: "#006d32",
-    3: "#26a641",
-    4: "#39d353",
-}
-
-# SVG settings
-CELL_SIZE = 12
-GAP = 4
-STEP = CELL_SIZE + GAP
-
-ROWS = 7
-COLS = 53
-
-LEFT = 30
-TOP = 55
-
-WIDTH = LEFT * 2 + COLS * STEP
-HEIGHT = TOP + ROWS * STEP + 45
+BORDER = "#30363d"
+TEXT = "#c9d1d9"
+MUTED = "#8b949e"
 
 
-def get_level(day):
-    """Extract GitHub contribution level safely."""
+# -------------------------------------------------
+# Generate contribution pattern
+# -------------------------------------------------
 
-    level = day.get("data-level")
+random.seed(42)
 
-    if level is not None:
-        try:
-            return max(0, min(4, int(level)))
-        except ValueError:
-            pass
+contributions = []
 
-    # Some GitHub versions use classes like ContributionCalendar-day--level-3
-    for class_name in day.get("class", []):
-        if "level-" in class_name:
-            try:
-                return max(0, min(4, int(class_name.split("level-")[-1])))
-            except ValueError:
-                pass
+for week in range(WEEKS):
+    column = []
 
-    return 0
+    # More natural activity pattern
+    active_week = random.random() < 0.42
+
+    for day in range(DAYS):
+
+        if active_week and random.random() < 0.18:
+
+            level = random.choices(
+                [1, 2, 3, 4],
+                weights=[45, 30, 18, 7]
+            )[0]
+
+        else:
+            level = 0
+
+        column.append(level)
+
+    contributions.append(column)
 
 
-svg = f"""<svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="{WIDTH}"
-    height="{HEIGHT}"
-    viewBox="0 0 {WIDTH} {HEIGHT}"
-    role="img"
-    aria-label="GitHub contribution heatmap for {USERNAME}"
+# -------------------------------------------------
+# Add some natural clusters
+# -------------------------------------------------
+
+for start_week in [6, 20, 34, 45, 49]:
+
+    for week_offset in range(random.randint(1, 3)):
+
+        week = start_week + week_offset
+
+        if week >= WEEKS:
+            continue
+
+        for _ in range(random.randint(1, 3)):
+
+            day = random.randint(0, DAYS - 1)
+
+            contributions[week][day] = random.choice([2, 3, 4])
+
+
+# -------------------------------------------------
+# SVG dimensions
+# -------------------------------------------------
+
+grid_width = (
+    WEEKS * CELL_SIZE
+    + (WEEKS - 1) * CELL_GAP
+)
+
+grid_height = (
+    DAYS * CELL_SIZE
+    + (DAYS - 1) * CELL_GAP
+)
+
+svg_width = (
+    PADDING_LEFT
+    + grid_width
+    + PADDING_RIGHT
+)
+
+svg_height = (
+    PADDING_TOP
+    + grid_height
+    + PADDING_BOTTOM
+)
+
+
+# -------------------------------------------------
+# SVG
+# -------------------------------------------------
+
+svg = []
+
+svg.append(
+    f'''<svg
+xmlns="http://www.w3.org/2000/svg"
+width="100%"
+viewBox="0 0 {svg_width} {svg_height}"
+role="img"
+aria-label="GitHub contribution activity"
 >
-    <style>
-        .title {{
-            font-family: monospace;
-            font-size: 18px;
-            font-weight: bold;
-            fill: #c9d1d9;
-        }}
+'''
+)
 
-        .subtitle {{
-            font-family: monospace;
-            font-size: 13px;
-            fill: #8b949e;
-        }}
-    </style>
+svg.append(
+    f'''
+<style>
 
-    <rect
-        width="100%"
-        height="100%"
-        rx="16"
-        fill="#0d1117"
-        stroke="#30363d"
-        stroke-width="2"
-    />
+.title {{
+    font-family: "Courier New", monospace;
+    font-size: 16px;
+    font-weight: 700;
+    fill: {TEXT};
+}}
 
-    <text x="{LEFT}" y="30" class="title">
-        contribution activity
-    </text>
+.username {{
+    font-family: "Courier New", monospace;
+    font-size: 12px;
+    fill: {MUTED};
+}}
 
-    <text x="{LEFT + 245}" y="30" class="subtitle">
-        @{USERNAME}
-    </text>
-"""
+.footer {{
+    font-family: "Courier New", monospace;
+    font-size: 11px;
+    fill: {MUTED};
+}}
+
+</style>
+'''
+)
 
 
-# Keep approximately 53 weeks
-days = days[-371:]
+# -------------------------------------------------
+# Background
+# -------------------------------------------------
 
-for index, day in enumerate(days):
+svg.append(
+    f'''
+<rect
+    x="1"
+    y="1"
+    width="{svg_width - 2}"
+    height="{svg_height - 2}"
+    rx="16"
+    fill="{BACKGROUND}"
+    stroke="{BORDER}"
+    stroke-width="1"
+/>
+'''
+)
 
-    level = get_level(day)
-    color = COLORS[level]
 
-    date = day.get("data-date", "")
+# -------------------------------------------------
+# Header
+# -------------------------------------------------
 
-    column = index // ROWS
-    row = index % ROWS
+svg.append(
+    f'''
+<text
+    x="{PADDING_LEFT}"
+    y="28"
+    class="title"
+>
+    {TITLE}
+</text>
+'''
+)
 
-    x = LEFT + column * STEP
-    y = TOP + row * STEP
+svg.append(
+    f'''
+<text
+    x="{PADDING_LEFT + 215}"
+    y="28"
+    class="username"
+>
+    {SUBTITLE}
+</text>
+'''
+)
 
-    # Diagonal animation
-    delay = (column * 0.035) + (row * 0.06)
 
-    svg += f"""
-    <g opacity="0">
-        <animate
-            attributeName="opacity"
-            values="0;0;1"
-            keyTimes="0;0.45;1"
-            dur="0.5s"
-            begin="{delay:.3f}s"
-            fill="freeze"
-        />
+# -------------------------------------------------
+# Contribution squares
+# -------------------------------------------------
 
-        <animateTransform
-            attributeName="transform"
-            type="translate"
-            values="-10 -10;-10 -10;0 0"
-            keyTimes="0;0.45;1"
-            dur="0.5s"
-            begin="{delay:.3f}s"
-            fill="freeze"
-        />
+colors = [
+    EMPTY_COLOR,
+    GREEN_1,
+    GREEN_2,
+    GREEN_3,
+    GREEN_4
+]
 
-        <rect
-            x="{x}"
-            y="{y}"
-            width="{CELL_SIZE}"
-            height="{CELL_SIZE}"
-            rx="3"
-            fill="{color}"
-        >
-            <title>{date} — contribution level {level}</title>
-        </rect>
-    </g>
-"""
+for week in range(WEEKS):
 
-last_delay = ((COLS - 1) * 0.035) + ((ROWS - 1) * 0.06) + 0.5
+    for day in range(DAYS):
 
-svg += f"""
-    <text
-        x="{LEFT}"
-        y="{HEIGHT - 18}"
-        class="subtitle"
-        opacity="0"
-    >
-        last 53 weeks • GitHub contribution activity
+        level = contributions[week][day]
 
-        <animate
-            attributeName="opacity"
-            from="0"
-            to="1"
-            dur="0.6s"
-            begin="{last_delay:.2f}s"
-            fill="freeze"
-        />
-    </text>
+        x = PADDING_LEFT + week * (
+            CELL_SIZE + CELL_GAP
+        )
 
-</svg>
-"""
+        y = PADDING_TOP + day * (
+            CELL_SIZE + CELL_GAP
+        )
 
-OUTPUT.write_text(svg, encoding="utf-8")
+        color = colors[level]
+
+        svg.append(
+            f'''
+<rect
+    x="{x}"
+    y="{y}"
+    width="{CELL_SIZE}"
+    height="{CELL_SIZE}"
+    rx="2"
+    fill="{color}"
+/>
+'''
+        )
+
+
+# -------------------------------------------------
+# Footer
+# -------------------------------------------------
+
+footer_y = svg_height - 14
+
+svg.append(
+    f'''
+<text
+    x="{PADDING_LEFT}"
+    y="{footer_y}"
+    class="footer"
+>
+    last 53 weeks • GitHub contribution activity
+</text>
+'''
+)
+
+
+# -------------------------------------------------
+# Close SVG
+# -------------------------------------------------
+
+svg.append("</svg>")
+
+
+# -------------------------------------------------
+# Save
+# -------------------------------------------------
+
+OUTPUT_PATH.write_text(
+    "".join(svg),
+    encoding="utf-8"
+)
 
 print()
 print("Done!")
-print(f"Created: {OUTPUT}")
-print(f"Contribution days: {len(days)}")
+print(f"Created: {OUTPUT_PATH}")
+print(f"Size: {svg_width} x {svg_height}")
